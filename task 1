@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="todoInput" placeholder="Add new task...">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+<script> let todoList = [];
+
+function addTodo() {
+    let input = document.getElementById('todoInput');
+    let todoText = input.value.trim();
+    
+    if (todoText !== '') {
+        todoList.push(todoText);
+        input.value = '';
+        displayTodos();
+    }
+}
+
+function displayTodos() {
+    let ul = document.getElementById('todoList');
+    ul.innerHTML = '';
+    
+    todoList.forEach((todo, index) => {
+        let li = document.createElement('li');
+        li.textContent = todo;
+        ul.appendChild(li);
+        
+        // Add a delete button to each todo item
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+            deleteTodo(index);
+        };
+        li.appendChild(deleteButton);
+    });
+}
+
+function deleteTodo(index) {
+    todoList.splice(index, 1);
+    displayTodos();
+}
+
+// Initial display of todos when the page loads
+displayTodos();
+</script>
+</body>
+</html>
