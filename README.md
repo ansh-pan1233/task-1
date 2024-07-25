@@ -1,6 +1,6 @@
-name ansh pandey
+name: Ansh pandey
 company: codtech it solutions
-id: CT08DS4496
+Id: CT08DS4496
 domain:web development
 duration: july to august
 mentor: Neela Santhosh Kumar
